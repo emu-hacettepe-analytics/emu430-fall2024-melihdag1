@@ -6,9 +6,9 @@ format:
     code-fold: false
 ---
 
-# **(c) Organizing Data Set**
+# **(a) Summaries**
 
-# **(c) Organizing Data Set**
+# **(b) Organizing Data Set**
 
 -   **Questions**
 
@@ -24,7 +24,7 @@ format:
 
 -   [ ] Mor
 
--   **Installing polls_us_election_2016 and Necessary Libraries**
+**Installing polls_us_election_2016 and Necessary Libraries**
 
 ```{r}
 #| output: false
@@ -82,4 +82,3 @@ new_data[1:10, ] %>%
 
 cat("Total NAs after modification:", sum(is.na(new_data)), "\n")
 ```
-
