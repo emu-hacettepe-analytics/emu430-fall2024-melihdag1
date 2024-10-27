@@ -1,6 +1,4 @@
 ---
-title: "My Blog"
+title: "My Personal Website"
 sidebar: false 
 ---
-
-This page is under construction.

@@ -1,15 +1,85 @@
 ---
 title: "Assignment 1"
+format:
+  html:
+    code-tools: false
+    code-fold: false
 ---
 
-# Assignment 1
+# **(c) Organizing Data Set**
+
+# **(c) Organizing Data Set**
+
+-   **Questions**
+
+*1) Hangi renk en sevdiğinizdir?*
+
+-   [ ] Kırmızı
+
+-   [ ] Mavi
+
+-   [ ] Yeşil
+
+-   [ ] Sarı
+
+-   [ ] Mor
+
+-   **Installing polls_us_election_2016 and Necessary Libraries**
 
 ```{r}
-1 + 1
+#| output: false
+#| code-tools: true
+#| code-fold: true
+install.packages("dslabs", repos = " https://CRAN.R-project.org/package=dslabs")
+library("dslabs")
+data(package = "dslabs")
+list.files(system.file("script", package = "dslabs"))
+data("polls_us_election_2016")
+install.packages("kableExtra", repos = "https://cloud.r-project.org/")
+install.packages("knitr", repos = "https://cloud.r-project.org/")
+
+library(knitr)
+library(kableExtra)
 ```
 
-My first assignment has two parts.
+-   **Datas with NA**
 
-## (a)
+```{r}
+#| code-tools: true
+#| code-fold: true
 
-## (b)
+# İlk 10 satırı daha şık bir tablo olarak göster
+polls_us_election_2016[1:10, ] %>%
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+cat("Total NAs before modification:", sum(is.na(polls_us_election_2016)), "\n")
+
+```
+
+-   **New Dataset Without NA**
+
+```{r}
+#| code-tools: true
+#| code-fold: true
+
+new_data <- polls_us_election_2016
+
+new_data[] <- lapply(new_data, function(x) {
+  if (is.numeric(x)) {
+    replace(x, is.na(x), 1999)
+  } else if (is.factor(x)) {
+    x <- as.character(x)
+    x[is.na(x)] <- "Mustafa"
+    factor(x)
+  } else if (is.character(x)) {
+    replace(x, is.na(x), "Mustafa")
+  }
+})
+new_data[1:10, ] %>%
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+cat("Total NAs after modification:", sum(is.na(new_data)), "\n")
+```
+
